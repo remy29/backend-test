@@ -41,12 +41,7 @@ const getUnconfirmedTrans = function () {
         )
       });
 
-      db.pool.query('INSERT INTO transactions (hash, total, fees, inputs, outputs) VALUES ($1, $2, $3, $4, $5)', [biggestTransaction[0].hash, biggestTransaction[0].total, biggestTransaction[0].fees, JSON.stringify(readyInputs), JSON.stringify(readyOutputs)], (error, results) => {
-        if (error) {
-          throw error
-        }
-        console.log('db update');
-      })
+      db.updateTransactions(biggestTransaction, readyInputs, readyOutputs);
     });
 }
 

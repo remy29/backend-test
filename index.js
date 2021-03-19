@@ -20,5 +20,5 @@ app.listen(port, () => {
 
   setInterval(() => {
     getUnconfirmedTrans();
-  }, 5000/* 300000 */);
+  }, 300000);
 })
