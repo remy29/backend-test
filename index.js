@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const db = require('./queries')
+const db = require('./db/queries')
 const port = 3000
 const axios = require('axios');
 
@@ -12,12 +12,13 @@ app.use(
 ) 
 
 app.get('/transactions', db.getTransactions);
+
 app.get('/biggest', db.getCurrentBiggest);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 
-  /* setInterval(() => {
+  setInterval(() => {
     axios.get("https://api.blockcypher.com/v1/btc/main/txs")
     .then((res) => {
 
@@ -64,5 +65,5 @@ app.listen(port, () => {
         console.log('db update');
       })
     });
-  }, 300000); */
+  }, 300000);
 })
