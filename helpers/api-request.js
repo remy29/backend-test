@@ -6,6 +6,7 @@ const getUnconfirmedTrans = function () {
     .then((res) => {
 
       let biggestTotal = 0;
+      
       let biggestTransaction = []; 
 
       for (const transaction of res.data) {
