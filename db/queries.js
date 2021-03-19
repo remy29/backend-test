@@ -22,7 +22,7 @@ const getCurrentBiggest = (request, response) => {
     if (error) {
       throw error
     }
-    targetTotal = results.rows[0].total;
+    targetTotal = results.rows[0] ? results.rows[0].total : 0;
     pool.query(`SELECT * FROM transactions WHERE total = ${targetTotal}`, (error, results) => {
       if (error) {
         throw error
