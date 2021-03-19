@@ -8,11 +8,7 @@ const getUnconfirmedTrans = function () {
 		let biggestTransaction = {};
 
 		for (const transaction of res.data) {
-			/* if (JSON.stringify(biggestTransaction) !== '{}' && biggestTransaction.hash === transaction.hash) {
-				console.log('same hash');
-				continue;
-			} */
-
+		
 			if (transaction.total > biggestTotal) {
 				biggestTotal = transaction.total;
 				biggestTransaction = {...transaction};
