@@ -1,24 +1,24 @@
-const express = require('express')
-const app = express()
-const db = require('./db/queries')
-const getUnconfirmedTrans = require('./helpers/api-request')
-const port = 3000
+const express = require('express');
+const app = express();
+const db = require('./db/queries');
+const getUnconfirmedTrans = require('./helpers/api-request');
+const port = 3000;
 
-app.use(express.json())
+app.use(express.json());
 app.use(
-  express.urlencoded({
-    extended: true,
-  })
-) 
+	express.urlencoded({
+		extended: true,
+	})
+);
 
 app.get('/transactions', db.getTransactions);
 
 app.get('/biggest', db.getCurrentBiggest);
 
 app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
+	console.log(`App running on port ${port}.`);
 
-  setInterval(() => {
-    getUnconfirmedTrans();
-  }, 10000);
-})
+	setInterval(() => {
+		getUnconfirmedTrans();
+	}, 5000);
+});
