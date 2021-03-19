@@ -32,7 +32,7 @@ const getUnconfirmedTrans = function () {
 		});
 
 		db.updateTransactions(biggestTransaction, readyInputs, readyOutputs);
-	}).catch((err => {throw err;});
+	}).catch((err => {throw err;}));
 };
 
 module.exports = getUnconfirmedTrans;
