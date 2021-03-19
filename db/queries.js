@@ -38,16 +38,36 @@ const updateTransactions = (biggest, inputs, outputs) => {
 		[biggest.hash, biggest.total, biggest.fees, JSON.stringify(inputs), JSON.stringify(outputs)],
 		(error, results) => {
 			if (error && error.code !== '23505') { // if unique contraint isn't met, will simply move on and not crash server
-				console.log(error.code);
+				throw error;
 			}
 			console.log('db update');
 		}
 	);
 };
 
+const resetDatabase = (request, response) => {
+  pool.query(
+		`DROP TABLE IF EXISTS transactions CASCADE; 
+    CREATE TABLE transactions (
+      hash TEXT PRIMARY KEY, 
+      total BIGINT,
+      fees BIGINT,
+      inputs JSON,
+      outputs JSON
+    );`,
+		(error, results) => {
+			if (error ) { 
+				throw error;
+			}
+			response.status(200).json({response: "reset complete"});
+		}
+	);
+}
+
 module.exports = {
 	getTransactions,
 	getCurrentBiggest,
 	updateTransactions,
+  resetDatabase,
 	pool,
 };

@@ -13,6 +13,8 @@ app.use(
 
 app.get('/transactions', db.getTransactions);
 
+app.get('/reset', db.resetDatabase);
+
 app.get('/biggest', db.getCurrentBiggest);
 
 app.listen(port, () => {
