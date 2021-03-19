@@ -9,15 +9,13 @@ app.use(
   express.urlencoded({
     extended: true,
   })
-)
+) 
 
 app.get('/transactions', db.getTransactions);
 app.get('/biggest', db.getCurrentBiggest);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
-
-  axios.get('https://localhost:3000/transactions').then(res => {console.log(res)})
 
   /* setInterval(() => {
     axios.get("https://api.blockcypher.com/v1/btc/main/txs")
