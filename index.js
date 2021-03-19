@@ -3,11 +3,12 @@ const db = require('./db/queries');
 const basicAuth = require('express-basic-auth')
 const getUnconfirmedTrans = require('./helpers/api-request');
 const app = express();
-const port = 3000;
+require('dotenv').config()
+const port = process.env.PORT; // ENV
 // YWRtaW46bmV0LWNlbnRz
 
 app.use(basicAuth({
-  users: { 'admin': 'net-cents' },
+  users: JSON.parse(process.env.USER_PASSWORD), // ENV 
   unauthorizedResponse: getUnauthorizedResponse
 }))
 
@@ -32,7 +33,6 @@ app.get('/biggest', db.getCurrentBiggest);
 
 app.listen(port, () => {
 	console.log(`App running on port ${port}.`);
-
 	/* setInterval(() => {
 		getUnconfirmedTrans();
 	}, 5000); */
