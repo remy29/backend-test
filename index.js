@@ -2,10 +2,12 @@ const express = require('express');
 const db = require('./db/queries');
 /* const basicAuth = require('express-basic-auth') */
 const getUnconfirmedTrans = require('./helpers/api-request');
+var httpsRedirect = require('express-https-redirect');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT; 
 
+app.use('/', httpsRedirect());
 
 /* function getUnauthorizedResponse(req) {
   return req.auth
