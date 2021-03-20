@@ -1,15 +1,14 @@
 const express = require('express');
 const db = require('./db/queries');
-/* const basicAuth = require('express-basic-auth') */
+const basicAuth = require('express-basic-auth')
 const getUnconfirmedTrans = require('./helpers/api-request');
-var httpsRedirect = require('express-https-redirect');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT; 
 
 app.use('/', httpsRedirect());
 
-/* function getUnauthorizedResponse(req) {
+function getUnauthorizedResponse(req) {
   return req.auth
       ? ('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected')
       : 'No credentials provided'
@@ -18,7 +17,7 @@ app.use('/', httpsRedirect());
 app.use(basicAuth({
   users: JSON.parse(process.env.USER_PASSWORD), 
   unauthorizedResponse: getUnauthorizedResponse
-})) */
+}))
 
 app.use(express.json());
 app.use(
@@ -28,8 +27,6 @@ app.use(
 );
 
 app.get('/transactions', db.getTransactions);
-
-app.get('/', db.getTransactions);
 
 app.get('/reset', db.resetDatabase);
 
