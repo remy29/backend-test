@@ -36,7 +36,7 @@ app.listen(port, () => {
 	console.log(`App running on port ${port}.`);
 	/* setInterval(() => {
 		getUnconfirmedTrans();
-	}, 5000); */
+	}, 300000); */
 });
 
 /* axios.get(
