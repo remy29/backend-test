@@ -2,7 +2,6 @@ const express = require('express');
 const db = require('./db/queries');
 /* const basicAuth = require('express-basic-auth') */
 const getUnconfirmedTrans = require('./helpers/api-request');
-const cors = require('cors');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT; 
@@ -25,9 +24,9 @@ app.use(
 	})
 );
 
-app.use(cors())
-
 app.get('/transactions', db.getTransactions);
+
+app.get('/', db.getTransactions);
 
 app.get('/reset', db.resetDatabase);
 
