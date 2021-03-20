@@ -1,4 +1,4 @@
-# Net-Cents Backend Test
+# Backend Test
 
 ## Stack 
 - Javascript/Node.js
