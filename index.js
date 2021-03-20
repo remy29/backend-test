@@ -36,14 +36,7 @@ app.listen(port || 3002, () => {
 	console.log(`App running on port ${port}.`);
 	setInterval(() => {
 		getUnconfirmedTrans();
-	}, 5000);
+	}, 300000);
 });
 
 module.exports = app;
-
-/* axios.get(
-	'http://localhost:3000/',
-	{
-		headers: {Authorization: 'Basic YWRtaW0LWNlbnRz'} 
-	}
-) */ // Request format

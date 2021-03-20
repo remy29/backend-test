@@ -17,9 +17,9 @@ const dummyData = {
 
 describe('Routes', () => {
 	describe('/GET /', () => {
-
 		beforeEach(() => {
-			db.pool.query(`DROP TABLE IF EXISTS transactions CASCADE;
+			db.pool.query(
+				`DROP TABLE IF EXISTS transactions CASCADE;
 	
 			CREATE TABLE transactions (
 				hash TEXT PRIMARY KEY, 
@@ -29,11 +29,13 @@ describe('Routes', () => {
 				outputs JSON
 			);
 			INSERT INTO transactions (hash, total, fees, inputs, outputs) VALUES ('000', 123, 456, '[1,3,3]', '[1,5,6]'); 
-			`, (error, results) => {
-				if (error) {
-					throw error;
+			`,
+				(error, results) => {
+					if (error) {
+						throw error;
+					}
 				}
-			})
+			);
 		});
 
 		it('it should GET all the transactions if authorized', (done) => {
@@ -59,16 +61,37 @@ describe('Routes', () => {
 		it('it should return a data in the correct format', (done) => {
 			chai.request(server)
 				.get('/')
-        .auth(process.env.TEST_USER, process.env.TEST_PASSWORD)
+				.auth(process.env.TEST_USER, process.env.TEST_PASSWORD)
 				.end((err, res) => {
 					res.should.have.status(200);
-          res.body[0].should.deep.equal(dummyData);
+					res.body[0].should.deep.equal(dummyData);
 					done();
 				});
 		});
 	});
 
 	describe('/GET biggest', () => {
+
+		afterEach(() => {
+			db.pool.query(
+				`DROP TABLE IF EXISTS transactions CASCADE;
+	
+			CREATE TABLE transactions (
+				hash TEXT PRIMARY KEY, 
+				total BIGINT,
+				fees BIGINT,
+				inputs JSON,
+				outputs JSON
+			);
+			`,
+				(error, results) => {
+					if (error) {
+						throw error;
+					}
+				}
+			);
+		});
+
 		it('it should return an array containing only one entry', (done) => {
 			chai.request(server)
 				.get('/biggest')

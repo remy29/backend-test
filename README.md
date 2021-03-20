@@ -18,9 +18,9 @@ run in terminal from root directory:
 1. ```npm install```
 2. ```psql -U {your postgreSQL user} -d postgres```
 3. ```CREATE database {db name of choice};```
-. ```\q```
-4. ```psql -U {your postgresQ} -d {db name of choice}```
-5. ```\i db/schema.sql```
+4. ```\q```
+5. ```psql -U {your postgresQ} -d {db name of choice}```
+6. ```\i db/schema.sql```
 
 next make a .env file following the format in .env.example.
 note ```USER_PASSWORD='{ " ": " " }'```  will be the username/password combination for authentication, fill it out like ex: ```USER_PASSWORD='{ "admin": "net-cents" }'```
