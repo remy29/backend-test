@@ -39,6 +39,8 @@ app.listen(port || 3002, () => {
 	}, 300000);
 });
 
+module.exports = app;
+
 /* axios.get(
 	'http://localhost:3000/transactions',
 	{
