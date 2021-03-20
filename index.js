@@ -32,7 +32,7 @@ app.get('/reset', db.resetDatabase);
 
 app.get('/biggest', db.getCurrentBiggest);
 
-app.listen(port, () => {
+app.listen(port || 3002, () => {
 	console.log(`App running on port ${port}.`);
 	/* setInterval(() => {
 		getUnconfirmedTrans();
