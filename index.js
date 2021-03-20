@@ -5,6 +5,7 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT;
 
+// Creates unauthorized access response 
 function getUnauthorizedResponse(req) {
 	return req.auth
 		? 'Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected'

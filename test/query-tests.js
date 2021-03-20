@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 
 describe('Query functions', () => {
 	describe('updateTransactions', () => {
-
+		// Setup for each test
     beforeEach(() => {
       db.pool.query(
         `DROP TABLE IF EXISTS transactions CASCADE;
@@ -31,7 +31,7 @@ describe('Query functions', () => {
         }
       );
     });
-
+		// Teardown for teach test
     afterEach(() => {
 			db.pool.query(
 				`DROP TABLE IF EXISTS transactions CASCADE;
@@ -51,7 +51,7 @@ describe('Query functions', () => {
 				}
 			);
 		});
-
+		// Attempts to log already exisiting entry and checks if error code 23505 (does not meet unique constraints) is returned
 		it('does not add a new entry to the database if it is  not unique', (done) => {
 			db.pool.query(
 				"INSERT INTO transactions (hash, total, fees, inputs, outputs) VALUES ('000', 123, 456, '[1,3,3]', '[1,5,6]');",

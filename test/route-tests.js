@@ -17,6 +17,7 @@ const dummyData = {
 
 describe('Routes', () => {
 	describe('/GET /', () => {
+		//setup for each test
 		beforeEach(() => {
 			db.pool.query(
 				`DROP TABLE IF EXISTS transactions CASCADE;
@@ -37,7 +38,7 @@ describe('Routes', () => {
 				}
 			);
 		});
-
+		// tests to see if API returns an array with credentials
 		it('it should GET all the transactions if authorized', (done) => {
 			chai.request(server)
 				.get('/')
@@ -48,7 +49,7 @@ describe('Routes', () => {
 					done();
 				});
 		});
-
+		// tests to see if connection is refused without credentials
 		it('it should refuse connection to transactions if unauthorized', (done) => {
 			chai.request(server)
 				.get('/')
@@ -57,7 +58,7 @@ describe('Routes', () => {
 					done();
 				});
 		});
-
+		// Makes sure that data that is returned is correctly formatted
 		it('it should return a data in the correct format', (done) => {
 			chai.request(server)
 				.get('/')
@@ -71,7 +72,29 @@ describe('Routes', () => {
 	});
 
 	describe('/GET biggest', () => {
-
+		//testing setup
+		beforeEach(() => {
+			db.pool.query(
+				`DROP TABLE IF EXISTS transactions CASCADE;
+	
+			CREATE TABLE transactions (
+				hash TEXT PRIMARY KEY, 
+				total BIGINT,
+				fees BIGINT,
+				inputs JSON,
+				outputs JSON
+			);
+			INSERT INTO transactions (hash, total, fees, inputs, outputs) VALUES ('000', 123, 456, '[1,3,3]', '[1,5,6]'); 
+			INSERT INTO transactions (hash, total, fees, inputs, outputs) VALUES ('111', 246, 81012, '[1,3,3]', '[1,5,6]'); 
+			`,
+				(error, results) => {
+					if (error) {
+						throw error;
+					}
+				}
+			);
+		});
+		//testing teardown
 		afterEach(() => {
 			db.pool.query(
 				`DROP TABLE IF EXISTS transactions CASCADE;
@@ -91,7 +114,7 @@ describe('Routes', () => {
 				}
 			);
 		});
-
+		// Checks to see if /biggest route only returns one entry
 		it('it should return an array containing only one entry', (done) => {
 			chai.request(server)
 				.get('/biggest')

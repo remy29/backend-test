@@ -2,6 +2,7 @@ const axios = require('axios');
 const db = require('../db/queries');
 
 const getUnconfirmedTrans = function () {
+	// API call to blockcypher
 	axios
 		.get('https://api.blockcypher.com/v1/btc/main/txs')
 		.then((res) => {
@@ -9,6 +10,7 @@ const getUnconfirmedTrans = function () {
 
 			let biggestTransaction = {};
 
+			// loops through results to select largest total
 			for (const transaction of res.data) {
 				if (transaction.total > biggestTotal) {
 					biggestTotal = transaction.total;
@@ -16,6 +18,7 @@ const getUnconfirmedTrans = function () {
 				}
 			}
 
+			// reformats inputs to specification in prompt
 			const readyInputs = biggestTransaction.inputs.map((input) => {
 				return {
 					output_value: input.output_value,
@@ -24,6 +27,7 @@ const getUnconfirmedTrans = function () {
 				};
 			});
 
+			// reformats outputs to specification in prompt
 			const readyOutputs = biggestTransaction.outputs.map((output) => {
 				return {
 					value: output.value,
@@ -32,6 +36,7 @@ const getUnconfirmedTrans = function () {
 				};
 			});
 
+			//calls updateTransaction query function with newest data to log into database
 			db.updateTransactions(biggestTransaction, readyInputs, readyOutputs);
 		})
 		.catch((err) => {
