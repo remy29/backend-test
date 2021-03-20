@@ -8,7 +8,6 @@ CREATE TABLE transactions (
   outputs JSON
 );
 
-
 /* CREATE TABLE inputs (
   id SERIAL PRIMARY KEY,
   hash TEXT references transactions(hash),

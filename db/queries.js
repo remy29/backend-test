@@ -1,12 +1,12 @@
-require('dotenv').config()
+require('dotenv').config();
 
-const {Pool} = require('pg');
+const { Pool } = require('pg');
 
-const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`
+const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
 
 const pool = new Pool({
-  connectionString: connectionString
-})
+	connectionString: connectionString,
+});
 
 const getTransactions = (request, response) => {
 	pool.query('SELECT * FROM transactions', (error, results) => {
@@ -38,16 +38,16 @@ const updateTransactions = (biggest, inputs, outputs) => {
 		'INSERT INTO transactions (hash, total, fees, inputs, outputs) VALUES ($1, $2, $3, $4, $5)',
 		[biggest.hash, biggest.total, biggest.fees, JSON.stringify(inputs), JSON.stringify(outputs)],
 		(error, results) => {
-			if (error && error.code !== '23505') { // if unique contraint isn't met, will simply move on and not crash server
+			// if unique contraint isn't met, will simply move on and not crash server
+			if (error && error.code !== '23505') {
 				throw error;
 			}
-			console.log('db update');
 		}
 	);
 };
 
 const resetDatabase = (request, response) => {
-  pool.query(
+	pool.query(
 		`DROP TABLE IF EXISTS transactions CASCADE; 
     CREATE TABLE transactions (
       hash TEXT PRIMARY KEY, 
@@ -57,18 +57,18 @@ const resetDatabase = (request, response) => {
       outputs JSON
     );`,
 		(error, results) => {
-			if (error ) { 
+			if (error) {
 				throw error;
 			}
-			response.status(200).json({response: "reset complete"});
+			response.status(200).json({ response: 'reset complete' });
 		}
 	);
-}
+};
 
 module.exports = {
 	getTransactions,
 	getCurrentBiggest,
 	updateTransactions,
-  resetDatabase,
+	resetDatabase,
 	pool,
 };
