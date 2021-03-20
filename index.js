@@ -1,12 +1,14 @@
 const express = require('express');
 const db = require('./db/queries');
-const basicAuth = require('express-basic-auth')
+import sslRedirect from 'heroku-ssl-redirect';
+/* const basicAuth = require('express-basic-auth') */
 const getUnconfirmedTrans = require('./helpers/api-request');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT; 
+app.use(sslRedirect());
 
-function getUnauthorizedResponse(req) {
+/* function getUnauthorizedResponse(req) {
   return req.auth
       ? ('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected')
       : 'No credentials provided'
@@ -15,7 +17,7 @@ function getUnauthorizedResponse(req) {
 app.use(basicAuth({
   users: JSON.parse(process.env.USER_PASSWORD), 
   unauthorizedResponse: getUnauthorizedResponse
-}))
+})) */
 
 app.use(express.json());
 app.use(
