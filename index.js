@@ -6,6 +6,7 @@ const getUnconfirmedTrans = require('./helpers/api-request');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT; 
+
 app.use(sslRedirect());
 
 /* function getUnauthorizedResponse(req) {
