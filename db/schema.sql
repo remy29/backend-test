@@ -8,9 +8,6 @@ CREATE TABLE transactions (
   outputs JSON
 );
 
-/* Dummy Data for testing */ 
-/* INSERT INTO transactions (hash, total, fees, inputs, outputs) VALUES (000, 123, 456, '[1,3,3]', '[1,5,6]')  */
-
 /* CREATE TABLE inputs (
   id SERIAL PRIMARY KEY,
   hash TEXT references transactions(hash),

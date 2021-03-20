@@ -26,7 +26,7 @@ app.use(
 	})
 );
 
-app.get('/transactions', db.getTransactions);
+app.get('/', db.getTransactions);
 
 app.get('/reset', db.resetDatabase);
 
@@ -36,13 +36,13 @@ app.listen(port || 3002, () => {
 	console.log(`App running on port ${port}.`);
 	setInterval(() => {
 		getUnconfirmedTrans();
-	}, 300000);
+	}, 5000);
 });
 
 module.exports = app;
 
 /* axios.get(
-	'http://localhost:3000/transactions',
+	'http://localhost:3000/',
 	{
 		headers: {Authorization: 'Basic YWRtaW0LWNlbnRz'} 
 	}

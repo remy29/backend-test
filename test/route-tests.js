@@ -16,7 +16,7 @@ const dummyData = {
 };
 
 describe('Routes', () => {
-	describe('/GET transactions', () => {
+	describe('/GET /', () => {
 
 		beforeEach(() => {
 			db.pool.query(`DROP TABLE IF EXISTS transactions CASCADE;
@@ -38,7 +38,7 @@ describe('Routes', () => {
 
 		it('it should GET all the transactions if authorized', (done) => {
 			chai.request(server)
-				.get('/transactions')
+				.get('/')
 				.auth(process.env.TEST_USER, process.env.TEST_PASSWORD)
 				.end((err, res) => {
 					res.should.have.status(200);
@@ -49,7 +49,7 @@ describe('Routes', () => {
 
 		it('it should refuse connection to transactions if unauthorized', (done) => {
 			chai.request(server)
-				.get('/transactions')
+				.get('/')
 				.end((err, res) => {
 					res.should.have.status(401);
 					done();
@@ -58,7 +58,7 @@ describe('Routes', () => {
 
 		it('it should return a data in the correct format', (done) => {
 			chai.request(server)
-				.get('/transactions')
+				.get('/')
         .auth(process.env.TEST_USER, process.env.TEST_PASSWORD)
 				.end((err, res) => {
 					res.should.have.status(200);
