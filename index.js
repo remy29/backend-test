@@ -1,7 +1,6 @@
 const express = require('express');
 const db = require('./db/queries');
 const basicAuth = require('express-basic-auth');
-const getUnconfirmedTrans = require('./helpers/api-request');
 require('dotenv').config();
 const app = express();
 const port = process.env.PORT;
@@ -34,9 +33,6 @@ app.get('/biggest', db.getCurrentBiggest);
 
 app.listen(port || 3002, () => {
 	console.log(`App running on port ${port}.`);
-	setInterval(() => {
-		getUnconfirmedTrans();
-	}, 300000);
 });
 
 module.exports = app;

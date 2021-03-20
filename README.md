@@ -26,7 +26,9 @@ next make a .env file following the format in .env.example.
 note ```USER_PASSWORD='{ " ": " " }'```  will be the username/password combination for authentication, fill it out like ex: ```USER_PASSWORD='{ "admin": "net-cents" }'```
 ```TEST_USER``` and ```TEST_PASSWORD``` should match this username/password combination.
 
-In a seperate terminal window from the db run ```npm start``` to start the server. 
+In a seperate terminal window from the root directory run ```npm start``` to start the server. 
+
+In another seperate terminal window from the root directory run ```npm run-script task``` to start logging new entries into the db
 
 To run test suite, terminate server and run ```npm test```
 
