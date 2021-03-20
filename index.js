@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('./db/queries');
-const  {sslRedirect} = require('heroku-ssl-redirect');
+const sslRedirect = require('heroku-ssl-redirect').sslRedirect;
 /* const basicAuth = require('express-basic-auth') */
 const getUnconfirmedTrans = require('./helpers/api-request');
 const app = express();
