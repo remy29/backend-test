@@ -3,13 +3,13 @@
 ## Stack 
 - Javascript/Node.js
 - Express.js server
-- PostgreSQL Database
-- Mocha / Chai Testing
+- PostgreSQL database
+- Mocha / Chai testing
 
 ### Dependencies 
 - dotenv: 8.2.0 
 - express: 4.17.1 
-- axios: 0.21.1 (for  handling api requests)
+- axios: 0.21.1 (for  handling http requests)
 - express-basic-auth: 1.2.0 (for handling basic authentication)
 - pg: 8.5.1 (for making database queries)
 
