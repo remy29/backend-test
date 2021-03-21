@@ -3,12 +3,12 @@ require('dotenv').config();
 const { Pool } = require('pg');
 
 const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
-// sets up connection to database using .env variables 
+// sets up connection to database using .env variables
 const pool = new Pool({
 	connectionString: connectionString,
 });
 
-// Queries database and return all results as JSON 
+// Queries database and return all results as JSON
 const getTransactions = (request, response) => {
 	pool.query('SELECT * FROM transactions', (error, results) => {
 		if (error) {
@@ -18,7 +18,7 @@ const getTransactions = (request, response) => {
 	});
 };
 
-// Queries all total is descing order, and uses first entry to find and return largest logged unconfirmed transaction
+// Queries all totals in descending order, and uses first entry to find and return largest logged unconfirmed transaction
 const getCurrentBiggest = (request, response) => {
 	let targetTotal;
 	pool.query('SELECT total FROM transactions ORDER BY total DESC', (error, results) => {

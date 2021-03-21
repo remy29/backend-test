@@ -1,9 +1,9 @@
 const getUnconfirmedTrans = require('./helpers/api-request');
 
-// Simply calls getUnconfirmedTrans every 5 minutes
+// calls getUnconfirmedTrans every 5 minutes
 
 setInterval(() => {
-  getUnconfirmedTrans();
+	getUnconfirmedTrans();
 }, 300000);
 
-console.log("logging biggest unconfirmed transaction every 5 minutes...")
+console.log('logging biggest unconfirmed transaction every 5 minutes...');

@@ -11,9 +11,9 @@ chai.use(chaiHttp);
 describe('Query functions', () => {
 	describe('updateTransactions', () => {
 		// Setup for each test
-    beforeEach(() => {
-      db.pool.query(
-        `DROP TABLE IF EXISTS transactions CASCADE;
+		beforeEach(() => {
+			db.pool.query(
+				`DROP TABLE IF EXISTS transactions CASCADE;
   
       CREATE TABLE transactions (
         hash TEXT PRIMARY KEY, 
@@ -24,15 +24,15 @@ describe('Query functions', () => {
       );
       INSERT INTO transactions (hash, total, fees, inputs, outputs) VALUES ('000', 123, 456, '[1,3,3]', '[1,5,6]'); 
       `,
-        (error, results) => {
-          if (error) {
-            throw error;
-          }
-        }
-      );
-    });
+				(error, results) => {
+					if (error) {
+						throw error;
+					}
+				}
+			);
+		});
 		// Teardown for teach test
-    afterEach(() => {
+		afterEach(() => {
 			db.pool.query(
 				`DROP TABLE IF EXISTS transactions CASCADE;
 	
@@ -59,10 +59,9 @@ describe('Query functions', () => {
 					if (error) {
 						error.code.should.equal('23505');
 						done();
+					} else {
+						done();
 					}
-          else {
-            done();
-          }
 				}
 			);
 		});
