@@ -37,7 +37,7 @@ from a terminal window run ```curl -H "Authorization: Basic {base64 encoded user
 
 example ```curl -H "Authorization: Basic YWRtaW46bmV0LWNlbnRz" http://localhost:3000/```
 
-or use a service such as postman or RESTed and choose basic auth and enter credentials 
+or use a service such as postman or RESTed and choose basic auth and enter credentials from .env 
 
 or from another app use axios or other http request library with headers in request ex: 
 ``` 

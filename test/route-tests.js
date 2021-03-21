@@ -50,7 +50,7 @@ describe('Routes', () => {
 				});
 		});
 		// tests to see if connection is refused without credentials
-		it('it should refuse connection to transactions if unauthorized', (done) => {
+		it('it should refuse connection to API if unauthorized', (done) => {
 			chai.request(server)
 				.get('/')
 				.end((err, res) => {
