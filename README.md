@@ -30,7 +30,7 @@ In a seperate terminal window from the root directory run ```npm start``` to sta
 
 In another seperate terminal window from the root directory run ```npm run-script task``` to start logging new entries into the db
 
-To run test suite, terminate server and run ```npm test``` * note this will reset the db, in a production application there would be a seperate testing database but for the sake of simplicity I left it at one. 
+To run test suite, terminate server and task.js and run ```npm test``` * note this will reset the db, in a production application there would be a seperate testing database but for the sake of simplicity I left it at one. 
 
 ## Use 
 from a terminal window run ```curl -H "Authorization: Basic {base64 encoded username:password combination}" http://localhost:{chosen server port}```
